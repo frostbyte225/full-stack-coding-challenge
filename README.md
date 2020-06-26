@@ -54,7 +54,7 @@ The coding challenge should be completed in 4 to 6 weeks.  Code snippets are inc
 > - Validate Eureka Discover Service identified:  Login, Employee, and API Gateway Services.
 > - Test Services via Zuul API Gateway.
 
-## Weeks 3 - 4
+## Weeks 3 &amp; 4
 > #### Udemy Courses
 > - [Full Stack:  Angular and Spring Boot](https://ibm-learning.udemy.com/course/full-stack-application-development-with-spring-boot-and-angular/) - 12.5 hours
 > - [Go Java Full Stack with Spring Boot and React](https://ibm-learning.udemy.com/course/full-stack-application-with-spring-boot-and-react/) - 11.5 hours
@@ -66,8 +66,9 @@ The coding challenge should be completed in 4 to 6 weeks.  Code snippets are inc
 > - Repeat above steps for the React UI.
 
 
-## Weeks 5 - 6 ~ DEMONSTRATIONS
+## Weeks 5 &amp; 6 
+> ### DEMONSTRATIONS
 > - All application components must be running in  Docker Containers.
 > - Angular UI and React UI must be running in parallel.
->   #### Docker Challenge:&nbsp;&nbsp;  `Stand up the coding challenge using Docker Compose.`
+>  ### NEXT:&nbsp;&nbsp;  `Stand up the coding challenge using Docker Compose.`
 
