@@ -13,8 +13,9 @@ Welcome to the IBM BR CIC Full Stack Coding Challenge.  The coding challenge is 
 6. Create an [IBM Cloud Account](https://cloud.ibm.com) 
 7. Create an [IBM GitHub Account](https://github.ibm.com/) 
 8. If you are not familiar with Git commands, feel free to find an online training tutorial or enroll in the [Udemy Course - Git for Geeks](https://ibm-learning.udemy.com/course/git-for-geeks/).
-9. Finally, **fork** the Git repository.
+9. **Fork** the Git repository to make a copy in your repository.
 
+# Project Information
 
 |Projects                 |Description                                          |
 |-------------------------|-----------------------------------------------------|
@@ -32,35 +33,41 @@ Welcome to the IBM BR CIC Full Stack Coding Challenge.  The coding challenge is 
 The coding challenge should be completed in 4 to 6 weeks.  Code snippets are included in the projects to speed along your progress.  However, you must implement the missing code.
 
 ## Week 1
-    Udemy Courses
-        - Docker for the Absolute Beginner – Hands On – DevOps
-        - Microservices with Spring Cloud
-    
-    Tasks
-        - Create MySQL Docker Images (Login and Employee Databases)
-        - Complete Login Service and Containerize
-        - Complete Employee Service and Containerize
-        - Create and Run in Docker Images
-        - Test Docker Images (Postman and MySQL WorkBench)
+> #### Udemy Courses
+> - [Docker for the Absolute Beginners – Hands On – DevOps](https://ibm-learning.udemy.com/course/learn-docker/) - 3.5 hours
+> - [Microservices with Spring Cloud](https://ibm-learning.udemy.com/course/microservices-with-spring-cloud/) - 4.5 hours
+
+> #### Tasks
+> - Create MySQL Docker Images (Login and Employee Databases).
+> - Complete Login Service and Containerize.
+> - Complete Employee Service and Containerize.
+> - Create and Run in Docker Images.
+> - Test Docker Images (Postman and MySQL WorkBench).
 
 ## Week 2
-    Udemy Courses
-        - Microservices with Spring Cloud (continued)
+> #### Udemy Courses
+> - [Microservices with Spring Cloud](https://ibm-learning.udemy.com/course/microservices-with-spring-cloud/) (continued)
     
-    Tasks
-        - Implement Eureka Discovery Service and Containerize
-        - Implement Zuul API Gateway Service and Containerize
-        - Validate Eureka Discover Service identified:  Login, Employee, and API Gateway Services.
-        - Test Services via Zuul API Gateway
+> #### Tasks
+> - Implement Eureka Discovery Service and Containerize.
+> - Implement Zuul API Gateway Service and Containerize.
+> - Validate Eureka Discover Service identified:  Login, Employee, and API Gateway Services.
+> - Test Services via Zuul API Gateway.
 
 ## Weeks 3 - 4
-    Udemy Courses
-        - Microservices with Spring Cloud (continued)
+> #### Udemy Courses
+> - [Full Stack:  Angular and Spring Boot](https://ibm-learning.udemy.com/course/full-stack-application-development-with-spring-boot-and-angular/) - 12.5 hours
+> - [Go Java Full Stack with Spring Boot and React](https://ibm-learning.udemy.com/course/full-stack-application-with-spring-boot-and-react/) - 11.5 hours
     
-    Tasks
-        - Full Stack:  Angular and Spring Boot
-        - Go Java Full Stack with Spring Boot and React
+> #### Tasks
+> - Implement and Containerize Angular UI. 
+> - Ensure screen requirements are implemented.
+> - Test Angular UI against service components.
+> - Repeat above steps for the React UI.
 
 
 ## Weeks 5 - 6 ~ DEMONSTRATIONS
+> - All application components must be running in  Docker Containers.
+> - Angular UI and React UI must be running in parallel.
+>   #### Docker Challenge:&nbsp;&nbsp;  `Stand up the coding challenge using Docker Compose.`
 
