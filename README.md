@@ -72,3 +72,15 @@ The coding challenge should be completed in 4 to 6 weeks.  Code snippets are inc
 > - Angular UI and React UI must be running in parallel.
 >  ### NEXT:&nbsp;&nbsp;  `Stand up the coding challenge using Docker Compose.`
 
+
+# Sequence Diagrams
+
+## Login
+> #
+> ![Login Sequence Diagram](./fscc_sd1.png)
+> #
+
+## Add and Edit Employees
+> #
+> ![Add and Edit Employee Sequence Diagram](./fscc_sd2.png)
+> #
