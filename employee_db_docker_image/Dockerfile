@@ -9,4 +9,4 @@ ENV MYSQL_ROOT_HOST 0.0.0.0
 # ADD data.sql /docker-entrypoint-initdb.d
 
 COPY my.cnf /usr/my.cnf
-EXPOSE 3306
+EXPOSE 3306
