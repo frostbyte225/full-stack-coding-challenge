@@ -1,0 +1,21 @@
+<div class="card">
+    <mat-card>
+        <mat-card-title>Welcome</mat-card-title>
+        <mat-card-content>
+                <mat-form-field hintLabel="Must be a valid email address">
+                  <input matInput #input maxlength="50" [(ngModel)]="email" placeholder="Email">
+                  <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+                </mat-form-field>
+              
+                <mat-form-field hintLabel="Max 50 characters">
+                    <input matInput #input maxlength="50" [(ngModel)]="password" type="password" placeholder="Password">
+                    <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+                </mat-form-field>
+
+                <div class="buttons">
+                    <button mat-raised-button (click)="login()" class="login-button">LOGIN</button>
+                    <a (click)="navigateToRegistration()">Sign-up</a>
+                </div>
+        </mat-card-content>
+    </mat-card>
+</div>

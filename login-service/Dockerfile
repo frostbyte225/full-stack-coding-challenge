@@ -1,4 +1,6 @@
-FROM openjdk:8-jdk-alpine 
+FROM openjdk:11
 VOLUME /tmp 
-COPY target/YOUR-APP-JAR-FILE-0.0.1-SNAPSHOT.jar YOUR-APP-JAR-FILE.jar 
-ENTRYPOINT ["java","-jar","YOUR-APP-JAR-FILE.jar"]
+COPY target/login-service-0.0.1-SNAPSHOT.jar login-service-0.0.1-SNAPSHOT.jar 
+ENTRYPOINT ["java","-jar","login-service-0.0.1-SNAPSHOT.jar"]
+
+EXPOSE 8081

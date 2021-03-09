@@ -1,0 +1,172 @@
+version: '3.7'
+
+services:
+  
+  employee_db_docker_image:
+    build:
+      context: employee_db_docker_image
+      dockerfile: Dockerfile
+    ports: 
+      - "5432:5432"
+    networks:
+      - coding_challenge_network
+
+    
+  login_db_docker_image:
+    build:
+      context: login_db_docker_image
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    networks: 
+      - coding_challenge_network
+
+  register_db_docker_image:
+    build: 
+      context: register_db_docker_image
+      dockerfile: Dockerfile
+    ports: 
+      - "27019:27019"
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: api_pass
+    networks: 
+      - coding_challenge_network
+      - kafka-net
+  
+  employee-service:
+    # image: employee-service:0.0.1-SNAPSHOT
+    build:
+      context: employee-service
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8082:8082"
+    networks:
+      - coding_challenge_network
+    depends_on: 
+     - employee_db_docker_image
+    environment: 
+      SPRING_DATASOURCE_URL: jdbc:postgresql://employee_db_docker_image:5432/employee_db
+      SPRING_DATASOURCE_USERNAME: api
+      SPRING_DATASROUCE_PASSWORD: api_pass
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka/
+
+  login-service:
+    build:
+      context: login-service
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports: 
+      - "8081:8081"
+    networks:
+      - coding_challenge_network
+      - kafa-net
+    depends_on: 
+      - login_db_docker_image
+    environment: 
+      SPRING_DATASOURCE_URL: jdbc:mysql://login_db_docker_image:3306/login_db
+      SPRING_DATASOURCE_USERNAME: api
+      SPRING_DATASOURCE_PASSWORD: api_pass
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka/
+
+  registration-service:
+    build:
+      context: registration-service
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports: 
+      - "8083:8083"
+    networks:
+      - kafka-net
+      - coding_challenge_network
+    depends_on: 
+      - register_db_docker_image
+      - kafka
+    environment: 
+      SPRING_DATA_MONGODB_USERNAME: admin
+      SPRING_DATA_MONGODB_PASSWORD: api_pass
+      SPRING_DATA_MONGODB_DATABASE: employee
+      SPRING_DATA_MONGODB_HOST: register_db_docker_image
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      SPRING_KAFKA_CONSUMER_GROUP-ID: kafka
+
+
+  # angular-ui:
+  #   build:
+  #     context: angular-ui
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "4200:4200"
+  #   volumes: 
+  #     - "./angular/user/src/app"
+  #   networks: 
+  #     - coding_challenge_network
+
+  api-gateway:
+    build:
+      context: api-gateway
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports: 
+      - "8765:8765"
+    environment: 
+      - eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka/
+    networks:
+      - coding_challenge_network
+      - front_end_network
+
+  discovery-service:
+    build:
+      context: discovery-service
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports: 
+      - "8761:8761"
+    networks:
+      - coding_challenge_network
+
+  zookeeper:
+    image: zookeeper:3.6.1
+    container_name: zookeeper
+    restart: always
+    networks:
+      - kafka-net
+      - coding_challenge_network
+    ports:
+      - "2181:2181"
+    volumes:
+      - d:/kafka_saves/zookeeper
+    networks: 
+      - kafka-net
+
+  kafka:
+    image: wurstmeister/kafka:2.12-2.5.0
+    container_name: kafka
+    restart: always
+    networks:
+      - kafka-net
+      - coding_challenge_network
+    ports:
+      - "9092:9092"
+    volumes:
+      - d:/kafka_saves/kafka
+    environment:
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: DOCKER_INTERNAL:PLAINTEXT,DOCKER_EXTERNAL:PLAINTEXT
+      KAFKA_LISTENERS: DOCKER_INTERNAL://:29092,DOCKER_EXTERNAL://:9092
+      KAFKA_ADVERTISED_LISTENERS: DOCKER_INTERNAL://kafka:29092,DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: DOCKER_INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_BROKER_ID: 1
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+  
+
+networks:
+  coding_challenge_network:
+  front_end_network:
+  kafka-net:
+    name: kafka-net
+    driver: bridge

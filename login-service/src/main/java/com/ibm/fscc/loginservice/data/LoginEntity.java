@@ -1,24 +1,28 @@
 package com.ibm.fscc.loginservice.data;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "login")
+@Getter
+@Setter
 public class LoginEntity {
 
+	@Id
+	@Column(name = "email")
 	private String email; // primary key
+
+	@Column(name = "password")
 	private String password; // encrypted
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
+	public LoginEntity(String email, String password) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	public LoginEntity() {
+	}
 }

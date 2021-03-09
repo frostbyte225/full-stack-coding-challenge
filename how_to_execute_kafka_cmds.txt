@@ -1,0 +1,15 @@
+Docker
+
+Open command prompt / terminal
+
+Execute docker exec -it kafka bash
+
+Execute the script. Don't forget to add .sh extension (e.g. kafka-topics.sh)
+
+To exit docker terminal, type exit and press Enter
+
+For example, type the following on command prompt :
+
+1. C:\> docker exec -it kafka bash
+
+2. #> kafka-topics.sh
